@@ -36,11 +36,13 @@ def fetch_all_data():
     return all_foods
 
 def get_macro_data(food_list):
-    """Extract protein, fat, carbs, and calorie content from each food item."""
+    """Extract and return macro data for each food item."""
+    results = []
+
     for food in food_list:
         food_name = food.get('description')
         fdc_id = food.get('fdcId')
-        
+
         macros = {'Protein': 0, 'Fat': 0, 'Carbs': 0, 'Calories': 0}
 
         for nutrient in food.get('foodNutrients', []):
@@ -50,12 +52,17 @@ def get_macro_data(food_list):
                 macros['Fat'] = nutrient.get('amount', 0)
             elif nutrient.get('number') == '205':
                 macros['Carbs'] = nutrient.get('amount', 0)
-        
-        print(f"{food_name} (ID: {fdc_id}) has "
-              f"Protein: {macros['Protein']}g, "
-              f"Fat: {macros['Fat']}g, and "
-              f"Carbs: {macros['Carbs']}g. ")
+
+        formatted = (
+            f"{food_name} (ID: {fdc_id}) has "
+            f"Protein: {macros['Protein']}g, "
+            f"Fat: {macros['Fat']}g, and "
+            f"Carbs: {macros['Carbs']}g."
+        )
+        results.append(formatted)
+
+    return results
 
 # Run
-data = fetch_all_data()
-print(get_macro_data(data))
+#data = fetch_all_data()
+#print(get_macro_data(data))
