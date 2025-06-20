@@ -9,7 +9,8 @@ params = {
     'api_key': API_KEY,
     'pageSize': 199,
     'dataType': 'Foundation',
-    'nutrients': ['203', '204', '205', '208']
+    'nutrients': ['203', '204', '205', '208'],
+    'pageNumber': 1,
 }
 
 def get_raw_data(url, params):
@@ -20,6 +21,19 @@ def get_raw_data(url, params):
     else:
         print(f"Error: {response.status_code} - {response.text}")
         return []
+
+def fetch_all_data():
+    """Fetch all food data from the USDA API."""
+    all_foods = []
+    page = 1
+    while True:
+        params['pageNumber'] = page
+        data = get_raw_data(url, params)
+        if not data:
+            break
+        all_foods.extend(data)
+        page += 1
+    return all_foods
 
 def get_macro_data(food_list):
     """Extract protein, fat, carbs, and calorie content from each food item."""
@@ -43,11 +57,5 @@ def get_macro_data(food_list):
               f"Carbs: {macros['Carbs']}g. ")
 
 # Run
-data = get_raw_data(url, params)
+data = fetch_all_data()
 print(get_macro_data(data))
-
-
-
-
-
-
