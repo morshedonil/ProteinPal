@@ -89,3 +89,23 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.logo-image {
+  height: 50px; /* Shrink image height */
+  width: auto;  /* Maintain aspect ratio */
+  margin-right: 1rem;
+}
+
+.logo-text {
+  color: white;
+  font-size: 1.5rem; /* Smaller font */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 2rem;
+  height: auto;
+}
