@@ -73,18 +73,3 @@ rag_chain = create_retrieval_chain(
     retriever=history_aware_retriever,
     combine_docs_chain=qa_chain
 )
-
-#### TESTING #####
-# Optional: start with an empty chat history
-chat_history = []
-
-# Actual user query
-question = input("Write your question here: ")
-
-response = rag_chain.invoke({
-    "input": question,           # For the history-aware retriever
-    "chat_history": chat_history,  # Also for the retriever
-    "question": question          # For the QA combine_docs_chain prompt
-})
-
-print("Answer:", response["answer"])

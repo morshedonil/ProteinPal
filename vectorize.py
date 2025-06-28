@@ -5,8 +5,6 @@ from sentence_transformers import SentenceTransformer
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
-
-
 def create_chunks(data):
 
     # Join the cleaned data into one string
